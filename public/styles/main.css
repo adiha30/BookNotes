@@ -65,3 +65,29 @@ ul {
     padding: 0;
     margin: 0;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.notfound {
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+.notfound h1 {
+    margin-bottom: 20px;
+    font-size: 70px;
+}
+
+.notfound button {
+    background-color: #3498db;
+    padding: 10px 20px;
+    font-size: 25px;
+    border: none;
+}
