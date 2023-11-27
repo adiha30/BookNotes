@@ -1,0 +1,21 @@
+.notfound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+.notfound h1 {
+    margin-bottom: 20px;
+    font-size: 70px;
+}
+
+.notfound button {
+    background-color: #3498db;
+    padding: 10px 20px;
+    font-size: 25px;
+    border: none;
+}
