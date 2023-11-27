@@ -17,13 +17,17 @@
         <ul>
             <% for(let book of books) { %>
                 <li>
-                    <form action="/book/<%= book.id %>" method="get">
+                    <form action="/books/<%= book.id %>" method="get">
                         <div class="bookPreview">
                             <div class="cover">
-                                <img src=<%= book.cover %> alt="Book Cover">
+                                <img src="<%= book.cover %>" alt="Book Cover">
                             </div>
                             <div class="metadata">
-                                <h1 class="title"><%= book.title %></h1>
+                                <div class="title-author">
+                                    <h1 class="title"><%= book.title %></h1>
+                                    <p class="author"><%= book.author %></p>
+                                    <p class="summary"><%= book.summary %></p>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -32,7 +36,7 @@
         </ul>
     <% } else { %>
         <div class="notfound">
-            <h1>There are no reiews yet!</h1>
+            <h1>There are no reviews yet!</h1>
             <button>Click here to add your first book review!</button>
         </div>
     <% } %>
