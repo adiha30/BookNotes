@@ -17,7 +17,7 @@
         <ul>
             <% for(let book of books) { %>
                 <li>
-                    <form action="/books/<%= book.id %>" method="get">
+                    <form action="/book/<%= book.id %>" method="get">
                         <div class="bookPreview">
                             <div class="cover">
                                 <img src="<%= book.cover %>" alt="Book Cover">
