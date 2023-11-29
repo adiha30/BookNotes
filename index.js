@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllBooks, getNotes, publishBookReview, publishNote } from "./db/utils.js";
+import { getAllBooks, getNotes, publishBookReview, getBook, publishNote, deleteNote } from "./db/utils.js";
 import bodyParser from "body-parser";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -15,13 +15,18 @@ app.use(express.static(__dirname + "/public"));
 app.get('/', async (req, res) => {
     const books = await getAllBooks();
 
+    console.log(books);
     res.render('index.ejs', { books });
 });
 
 app.get('/book/:id', async (req, res) => {
-    const notes = await getNotes(req.query.id);
+    const book_id = req.params.id;
+    const book = await getBook(book_id)
+    var notes = await getNotes(book_id);
 
-    res.render('book.ejs', { notes });
+    notes = notes.sort(function(a,b) { return new Date(a.date) - new Date(b.date)});
+
+    res.render('book.ejs', { book, notes });
 });
 
 app.get('/new', (req, res) => {
@@ -36,10 +41,35 @@ app.post('/new', async (req, res) => {
     };
 
     book.cover = await getCover(book);
+    await publishBookReview(book);
 
     res.redirect('/');
 });
 
+app.post('/add-note', async (req,res) => {
+    const book_id = req.body.book_id;
+    const content = req.body.content;
+    const noteToPublish = {
+        date: new Date(),
+        note: content,
+        book_id: book_id
+    };
+
+    await publishNote(noteToPublish);
+
+    res.redirect(`/book/${book_id}`);
+});
+
+app.post('/delete-note/:id', async (req, res) => {
+    const note_id = req.params.id;
+    const book_id = req.body.book_id;
+
+    console.log(note_id + ", " + book_id);
+
+    await deleteNote(note_id);
+
+    res.redirect(`/book/${book_id}`);
+});
 
 app.listen(port, () => {
     console.log(`App listens on port ${port}`);

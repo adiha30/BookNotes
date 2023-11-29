@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/book.css">
+    <title><% if (locals.book) { %>
+        <%= book.title %> Review
+    <% } else {%>
+        Error page :/
+    <% } %>
+    </title>
+</head>
+<body>
+    <%- include('partials/header.ejs'); -%>
+
+    <% if (locals.book) { %>
+        <div class="book-container">
+            <img src="<%= book.cover %>" alt="Book Cover" class="book-cover">
+            <div class="book-details">
+                <h2 class="title"><%= book.title %></h2>
+                <p class="author"><%= book.author %></p>
+                <p class="summary"><%= book.summary %></p>
+            </div>
+        </div>
+
+        <div class="notes">
+            <ul>
+                <% for (const note of notes) { %>
+                    <li class="note">
+                        <div class="note-content">
+                            <p><%= note.note %></p>
+                        </div>
+                        <form action="/delete-note/<%= note.id %>" method="post">
+                            <input type="hidden" id="note_id" name="note_id" value="<%= note.id %>">
+                            <input type="hidden" id="book_id" name="book_id" value="<%= book.id %>">
+                            <button class="delete" type="submit">
+                                <img class="icon" src="/assets/icons/delete.png" alt="delete image">
+                            </button>
+                        </form>
+                    </li>
+                <% } %>
+            </ul>
+            <form action="/add-note" method="post">
+                <div class="addNote">
+                    <input type="hidden" name="book_id" id="book_id" value="<%= book.id %>">
+                    <input type="text" name="content" id="content" placeholder="Your Note Here..." autocomplete="off">
+                    <button type="submit">Add note</button>
+                </div>
+            </form>
+        </div>
+
+    <% } else {%>
+        <form action="/" method="get">
+            <div class="booknotfound">
+                <h1>Oops. There seems to be no such book</h1>
+                <button>Click here to go back to home page !</button>
+            </div>
+        </form>
+    <% } %>
+</body>
+</html>
