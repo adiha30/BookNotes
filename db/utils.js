@@ -21,6 +21,12 @@ export async function getAllBooks() {
     return books;
 }
 
+export async function getBook(book_id) {
+    const result = await db.query(`SELECT * FROM ${BOOK_TABLE} WHERE id = $1`, [book_id]);
+
+    return result.rows.find((book) => book.id = book_id);
+}
+
 export async function publishBookReview(book) {
     await db.query(`INSERT INTO ${BOOK_TABLE} (title, author, cover, summary) VALUES ($1, $2, $3 ,$4)`,
     [book.title, book.author, book.cover, book.summary]);
