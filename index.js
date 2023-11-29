@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllBooks, getNotes, publishBookReview, getBook, publishNote } from "./db/utils.js";
+import { getAllBooks, getNotes, publishBookReview, getBook, publishNote, deleteNote } from "./db/utils.js";
 import bodyParser from "body-parser";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -60,8 +60,15 @@ app.post('/add-note', async (req,res) => {
     res.redirect(`/book/${book_id}`);
 });
 
-app.delete('/delete-note/:id', async (req, res) => {
-    console.log(req);
+app.post('/delete-note/:id', async (req, res) => {
+    const note_id = req.params.id;
+    const book_id = req.body.book_id;
+
+    console.log(note_id + ", " + book_id);
+
+    await deleteNote(note_id);
+
+    res.redirect(`/book/${book_id}`);
 });
 
 app.listen(port, () => {

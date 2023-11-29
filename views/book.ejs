@@ -30,10 +30,11 @@
                 <% for (const note of notes) { %>
                     <li class="note">
                         <div class="note-content">
-                            <input type="hidden" name="note_id" value="<%= note.id %>">
                             <p><%= note.note %></p>
                         </div>
-                        <form action="/delete-note/<%= note.id %>" method="delete">
+                        <form action="/delete-note/<%= note.id %>" method="post">
+                            <input type="hidden" id="note_id" name="note_id" value="<%= note.id %>">
+                            <input type="hidden" id="book_id" name="book_id" value="<%= book.id %>">
                             <button class="delete" type="submit">
                                 <img class="icon" src="/assets/icons/delete.png" alt="delete image">
                             </button>
