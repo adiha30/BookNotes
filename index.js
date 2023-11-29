@@ -60,6 +60,9 @@ app.post('/add-note', async (req,res) => {
     res.redirect(`/book/${book_id}`);
 });
 
+app.delete('/delete-note/:id', async (req, res) => {
+    console.log(req);
+});
 
 app.listen(port, () => {
     console.log(`App listens on port ${port}`);

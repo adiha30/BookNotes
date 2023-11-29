@@ -8,6 +8,7 @@ body {
     display: flex;
     align-items: start;
     margin-bottom: 20px;
+    margin-left: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
@@ -85,16 +86,29 @@ ul {
 }
 
 .note {
+    display: flex;
+    align-items: center;
     border: 1px solid #ddd;
     border-radius: 8px;
     margin-bottom: 10px;
+    margin-left: 10px;
     padding: 10px;
     background-color: #fff;
 }
 
 .note-content {
+    flex-grow: 1;
     font-size: 16px;
     color: #333;
+    margin-right: 10px;
+}
+
+.delete {
+    background-color: inherit;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
 }
 
 .notfound {
