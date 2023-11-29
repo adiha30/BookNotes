@@ -84,6 +84,19 @@ ul {
     border: none;
 }
 
+.note {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.note-content {
+    font-size: 16px;
+    color: #333;
+}
+
 .notfound {
     flex-direction: column;
     justify-content: start;

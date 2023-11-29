@@ -44,7 +44,7 @@ export async function getNotes(book_id) {
     return notes;
 }
 export async function publishNote(note) {
-    console.log(note.book_id);
+    console.log(note);
     await db.query(`INSERT INTO ${NOTES_TABLE} (date, note, book_id) VALUES ($1, $2, $3)`,
     [note.date, note.note, note.book_id]);
 }

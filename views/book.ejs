@@ -28,14 +28,17 @@
         <div class="notes">
             <ul>
                 <% for (const note of notes) { %>
-                    <li>
-
+                    <li class="note">
+                        <div class="note-content">
+                            <%= note.note %>
+                        </div>
                     </li>
                 <% } %>
             </ul>
             <form action="/add-note" method="post">
                 <div class="addNote">
-                    <input type="text" name="content" id="content" placeholder="Your Note Here...">
+                    <input type="hidden" name="book_id" id="book_id" value="<%= book.id %>">
+                    <input type="text" name="content" id="content" placeholder="Your Note Here..." autocomplete="off">
                     <button type="submit">Add note</button>
                 </div>
             </form>

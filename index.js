@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllBooks, getNotes, publishBookReview, getBook } from "./db/utils.js";
+import { getAllBooks, getNotes, publishBookReview, getBook, publishNote } from "./db/utils.js";
 import bodyParser from "body-parser";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -44,6 +44,20 @@ app.post('/new', async (req, res) => {
     await publishBookReview(book);
 
     res.redirect('/');
+});
+
+app.post('/add-note', async (req,res) => {
+    const book_id = req.body.book_id;
+    const content = req.body.content;
+    const noteToPublish = {
+        date: new Date(),
+        note: content,
+        book_id: book_id
+    };
+
+    await publishNote(noteToPublish);
+
+    res.redirect(`/book/${book_id}`);
 });
 
 
