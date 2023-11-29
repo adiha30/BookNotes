@@ -17,7 +17,7 @@
         <ul>
             <% for(let book of books) { %>
                 <li>
-                    <form action="/book/<%= book.id %>" method="get">
+                    <a href="/book/<%= book.id %>">
                         <div class="bookPreview">
                             <div class="cover">
                                 <img src="<%= book.cover %>" alt="Book Cover">
@@ -30,15 +30,17 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </a>
                 </li>
             <% } %>
         </ul>
     <% } else { %>
-        <div class="notfound">
-            <h1>There are no reviews yet!</h1>
-            <button>Click here to add your first book review!</button>
-        </div>
+        <form action="/new" method="get">
+            <div class="notfound">
+                <h1>There are no reviews yet!</h1>
+                <button>Click here to add your first book review!</button>
+            </div>
+        </form>
     <% } %>
 </body>
 </html>

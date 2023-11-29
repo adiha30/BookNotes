@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/newBook.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
+    <title>New Book</title>
+</head>
+<body>
+    <%- include('partials/header.ejs'); -%>
+
+    <form action="/new" method="post" class="new-book-form">
+        <div class="writer">
+            <input type="text" name="title" placeholder="Book Title" autocomplete="off" />
+            <input type="text" name="author" placeholder="Book Author" autocomplete="off" />
+        </div>
+        <textarea name="summary" class="summary" placeholder="Book Summary" autocomplete="off"></textarea>
+        <button type="submit">Add Review</button>
+    </form>
+
+</body>
+</html>

@@ -21,6 +21,11 @@ export async function getAllBooks() {
     return books;
 }
 
+export async function publishBookReview(book) {
+    await db.query(`INSERT INTO ${BOOK_TABLE} (title, author, cover, summary) VALUES ($1, $2, $3 ,$4)`,
+    [book.title, book.author, book.cover, book.summary]);
+}
+
 export async function getNotes(book_id) {
     let notes = [];
 
@@ -32,3 +37,9 @@ export async function getNotes(book_id) {
 
     return notes;
 }
+export async function publishNote(note) {
+    console.log(note.book_id);
+    await db.query(`INSERT INTO ${NOTES_TABLE} (date, note, book_id) VALUES ($1, $2, $3)`,
+    [note.date, note.note, note.book_id]);
+}
+
